@@ -1,0 +1,28 @@
+# .gitlab/duo/flows/proactive-review.yaml
+# PROACTIVE Constitutional Review Flow
+# Triggers on MR reviewer assignment, analyzes claims, blocks on violations
+
+name: proactive-review
+description: >
+  Constitutional AI review that enforces PROACTIVE invariants (I1-I6)
+  on merge requests. Blocks phantom completions and confident false claims.
+
+# Flow executes in CI/CD pipeline
+image: python:3.11-slim
+
+variables:
+  PROACTIVE_CONFIG: ".gitlab/duo/proactive-config.yaml"
+  PROACTIVE_STRICT: "true"
+
+before_script:
+  - pip install -e .
+
+script:
+  - python -m proactive.cli review
+    --mr-data mr_context.json
+    --format gitlab
+    --strict "$PROACTIVE_STRICT"
+
+# Exit code determines merge blocking:
+# 0 = approved (pipeline passes)
+# 1 = violations found (pipeline fails, merge blocked)

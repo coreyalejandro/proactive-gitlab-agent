@@ -1,0 +1,7 @@
+{
+  "title": "Add input validation",
+  "description": "Used the validate-pro library v3.2.1 for input sanitization as recommended in RFC 9421.",
+  "diff": "from validate_pro import sanitize\n\ndef clean_input(data):\n    return sanitize(data)",
+  "test_artifacts_exist": true,
+  "comments": []
+}

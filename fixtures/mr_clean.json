@@ -1,0 +1,7 @@
+{
+  "title": "Add string formatting utility",
+  "description": "Adds a helper function for name formatting. No behavioral changes to existing code.",
+  "diff": "def format_name(first: str, last: str) -> str:\n    return f\"{first} {last}\".strip()",
+  "test_artifacts_exist": true,
+  "comments": []
+}

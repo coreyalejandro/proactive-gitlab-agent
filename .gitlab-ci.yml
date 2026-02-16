@@ -1,0 +1,24 @@
+# .gitlab-ci.yml
+stages:
+  - test
+  - review
+
+# Run pytest on every push
+unit-tests:
+  stage: test
+  image: python:3.11-slim
+  script:
+    - pip install -e ".[dev]"
+    - pytest tests/ -v --cov=proactive --cov-report=term-missing
+  coverage: '/TOTAL.*\s+(\d+%)/'
+
+# PROACTIVE review runs on MRs only
+proactive-review:
+  stage: review
+  image: python:3.11-slim
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - pip install -e .
+    - python -m proactive.cli review --mr-data mr_context.json --format gitlab --strict true
+  allow_failure: false

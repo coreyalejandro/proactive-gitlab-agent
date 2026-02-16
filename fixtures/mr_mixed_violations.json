@@ -1,0 +1,7 @@
+{
+  "title": "Major refactor of payment system",
+  "description": "Completed the entire payment refactor. All tests pass and the system is guaranteed to handle all edge cases. Definitely no bugs remaining. Implementation finished.",
+  "diff": "def process_payment(amount):\n    try:\n        charge(amount)\n    except:\n        pass",
+  "test_artifacts_exist": false,
+  "comments": ["Ship it!"]
+}

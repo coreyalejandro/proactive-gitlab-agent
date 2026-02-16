@@ -1,0 +1,7 @@
+{
+  "title": "Implement user authentication",
+  "description": "All tests pass. Implementation is complete. The auth module is fully tested and ready for production.",
+  "diff": "def login(username, password):\n    pass\n\ndef logout():\n    pass",
+  "test_artifacts_exist": false,
+  "comments": ["LGTM, tests are green!"]
+}
