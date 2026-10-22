@@ -1,5 +1,8 @@
 # PROACTIVE
 
+> **Earlier version (January 2026), kept for the record.** The current, tested version is
+> [coreyalejandro/28441830](https://github.com/coreyalejandro/28441830) (v4.1.1, 732 tests).
+
 > Constitutional AI for your pipeline
 
 A GitLab Duo agent that enforces safety principles on every merge request. Catches phantom completions, confident false claims, and source fabrication before they reach production.
@@ -125,13 +128,16 @@ proactive-review:
 
 ## Validation Evidence
 
-Validated against n=200 TruthfulQA samples:
+Pilot on hand-written, seeded test cases (not a benchmark; the cases were written by the author):
 
 | Metric | Result |
 | ------ | ------ |
-| Detection Rate | 100% (all invariant violations caught) |
-| False Positive Rate | 0% (no clean samples flagged) |
-| Invariants Tested | I1, I2, I3, I4, I5, I6 |
+| Seeded test files | 8 (7 with seeded violations, 1 clean control) |
+| Violations detected | 19, in all 7 seeded files |
+| Clean control flagged | none |
+| Invariants exercised | I1, I2, I3, I4, I5, I6 |
+
+An earlier version of this README described a 200-sample TruthfulQA validation; no artifact for it exists, so that claim is withdrawn.
 
 Full results: [`docs/evidence/validation_results.json`](docs/evidence/validation_results.json)
 
